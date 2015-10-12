@@ -35,6 +35,7 @@
 		C209E2851BC6680C003BD16C /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C209E2751BC6680C003BD16C /* UIView+WebCacheOperation.m */; settings = {ASSET_TAGS = (); }; };
 		C209E2931BC6898F003BD16C /* MoveCellMode.m in Sources */ = {isa = PBXBuildFile; fileRef = C209E2921BC6898F003BD16C /* MoveCellMode.m */; settings = {ASSET_TAGS = (); }; };
 		C209E2961BC689E8003BD16C /* MoveLIstHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C209E2951BC689E8003BD16C /* MoveLIstHelper.m */; settings = {ASSET_TAGS = (); }; };
+		C22920561BC797680071E1DF /* pinlunshu.png in Resources */ = {isa = PBXBuildFile; fileRef = C22920551BC797680071E1DF /* pinlunshu.png */; settings = {ASSET_TAGS = (); }; };
 		C23BE45A1BC5107D00124CDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BE4591BC5107D00124CDB /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		C23BE4681BC5172D00124CDB /* DuanZiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BE45F1BC5172D00124CDB /* DuanZiTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C23BE4691BC5172D00124CDB /* MovieTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23BE4611BC5172D00124CDB /* MovieTableViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -137,6 +138,7 @@
 		C209E2921BC6898F003BD16C /* MoveCellMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveCellMode.m; sourceTree = "<group>"; };
 		C209E2941BC689E8003BD16C /* MoveLIstHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveLIstHelper.h; sourceTree = "<group>"; };
 		C209E2951BC689E8003BD16C /* MoveLIstHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveLIstHelper.m; sourceTree = "<group>"; };
+		C22920551BC797680071E1DF /* pinlunshu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinlunshu.png; sourceTree = "<group>"; };
 		C23BE4581BC5107D00124CDB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C23BE4591BC5107D00124CDB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C23BE45E1BC5172D00124CDB /* DuanZiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DuanZiTableViewController.h; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		A42874851BC502F40053F327 /* 新闻项目icon */ = {
 			isa = PBXGroup;
 			children = (
+				C22920551BC797680071E1DF /* pinlunshu.png */,
 				A42874861BC502F40053F327 /* shipin.png */,
 				A42874871BC502F40053F327 /* shipin1.png */,
 				A42874881BC502F40053F327 /* wo.png */,
@@ -392,10 +395,10 @@
 				C23BE4631BC5172D00124CDB /* SportTableViewController.m */,
 				C23BE45E1BC5172D00124CDB /* DuanZiTableViewController.h */,
 				C23BE45F1BC5172D00124CDB /* DuanZiTableViewController.m */,
-				C23BE4601BC5172D00124CDB /* MovieTableViewController.h */,
-				C23BE4611BC5172D00124CDB /* MovieTableViewController.m */,
 				C23BE4661BC5172D00124CDB /* TuPianTableViewController.h */,
 				C23BE4671BC5172D00124CDB /* TuPianTableViewController.m */,
+				C23BE4601BC5172D00124CDB /* MovieTableViewController.h */,
+				C23BE4611BC5172D00124CDB /* MovieTableViewController.m */,
 			);
 			path = "首页分页面";
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				C23BE4781BC5180000124CDB /* SCNavTabBar.bundle in Resources */,
 				A428748D1BC502F40053F327 /* shipin1.png in Resources */,
 				C28FC6761BC3E83900B5D9C2 /* Main.storyboard in Resources */,
+				C22920561BC797680071E1DF /* pinlunshu.png in Resources */,
 				C29A54BD1BC6A6AF007E9FFB /* TouTiaoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

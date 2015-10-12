@@ -8,6 +8,7 @@
 
 #import "TouTiaoTableViewCell.h"
 
+#import "UIImageView+WebCache.h"
 
 @implementation TouTiaoTableViewCell
 
@@ -23,7 +24,13 @@
 
 - (void)setOneImeCellModel:(OneImageCellModel *)oneImeCellModel{
     
+    [_img4OneImgCell sd_setImageWithURL:[NSURL URLWithString:oneImeCellModel.thumbnail]];
     
+    _title4OneImgCell.text = oneImeCellModel.title;
+    
+    _time4OneImgCell.text = oneImeCellModel.updateTime;
+    
+    _pinlun4OneImgCell.text = oneImeCellModel.commentsall;
     
 }
 

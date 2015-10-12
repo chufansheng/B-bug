@@ -16,6 +16,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *title4OneImgCell;
 
+@property (weak, nonatomic) IBOutlet UILabel *time4OneImgCell;
+
+@property (weak, nonatomic) IBOutlet UILabel *pinlun4OneImgCell;
+
+
 @property (nonatomic , strong) OneImageCellModel *oneImeCellModel;
 
 

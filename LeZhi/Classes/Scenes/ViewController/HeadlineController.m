@@ -44,9 +44,10 @@
     DuanZiTableViewController *duanziVC = [[DuanZiTableViewController alloc]init];
     duanziVC.title = @"段子";
     
+    
     SCNavTabBarController *navTabControll = [[SCNavTabBarController alloc]init];
     navTabControll.subViewControllers = @[toutiaoVC,yuleVC,sportVC,movieVC,duanziVC];
-    navTabControll.showArrowButton = YES;
+    navTabControll.showArrowButton = NO;
     [navTabControll addParentController:self];
     
     

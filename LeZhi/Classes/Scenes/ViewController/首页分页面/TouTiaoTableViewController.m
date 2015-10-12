@@ -8,6 +8,16 @@
 
 #import "TouTiaoTableViewController.h"
 
+#import "MJRefresh.h"
+#import "MJRefreshAutoFooter.h"
+#import "MJRefreshNormalHeader.h"
+
+#import "OneImageCellModel.h"
+
+#import "TouTiaoHelper.h"
+
+#import "TouTiaoTableViewCell.h"
+
 @interface TouTiaoTableViewController ()
 
 @end
@@ -17,11 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [[TouTiaoHelper shanreTouTiaoHelper]requestWithTouTiaoListCellofPage:1 Finsh:^{
+        [self.tableView reloadData];
+    }];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"TouTiaoTableViewCell" bundle:nil] forCellReuseIdentifier:@"TouTiaoCell"];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,23 +46,27 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return [TouTiaoHelper shanreTouTiaoHelper].allTouTiaoListArr.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    TouTiaoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TouTiaoCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+   // cell.oneImeCellModel = [TouTiaoHelper shanreTouTiaoHelper].allTouTiaoListArr[indexPath.row];
+    
+    
+    
+    
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
