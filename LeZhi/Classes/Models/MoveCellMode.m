@@ -13,9 +13,9 @@
    // NSLog(@"%@",key);
     
 }
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@", _title];
-}
+//- (NSString *)description
+//{
+//    return [NSString stringWithFormat:@"%@", _imgsrc];
+//}
 
 @end

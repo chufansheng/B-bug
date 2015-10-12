@@ -24,8 +24,9 @@
     [self.img4Pic sd_setImageWithURL:[NSURL URLWithString:model.imgsrc]];
     
     self.lab.text = model.title;
+    self.lab.font = [UIFont systemFontOfSize:14];
     
     self.lab1.text = model.digest;
-
+    self.lab1.font = [UIFont systemFontOfSize:12];
 }
 @end

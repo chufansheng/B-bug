@@ -13,9 +13,13 @@
 #import "MJRefresh.h"
 #import "MJRefreshAutoFooter.h"//上拉加载
 #import "MJRefreshNormalHeader.h"//下拉刷新
-
+#import "UIImageView+WebCache.h"
+#import "MoveFenViewCell.h"
 
 @interface MovieTableViewController ()
+
+@property (nonatomic,strong) UIImageView *bigImg1;
+@property (nonatomic,strong) MoveCellMode *bigImgModel;
 
 @end
 
@@ -28,12 +32,16 @@
     self.title = @"影视";
     [self.tableView registerNib:[UINib nibWithNibName:@"MoveViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
-//    self.view.backgroundColor = [UIColor redColor];
-//    [[MoveLIst sharedHelp]requestAllMoveWithFinish:^{
-//        NSLog(@"请求完成");
-//        [self.tableView reloadData];
-//    }];
+   //注册分栏
+    [self.tableView registerNib:[UINib nibWithNibName:@"MoveFenViewCell" bundle:nil] forCellReuseIdentifier:@"fen"];
+  
+    self.bigImg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, 200)];
+
     [[MoveLIst sharedHelp]requestWithMoveListCellofPage:0 Finsh:^{
+        
+    [self.bigImg1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[MoveLIst sharedHelp].bigImg[0]]]];
+    self.tableView.tableHeaderView = self.bigImg1;
+
         [self.tableView reloadData];
     }];
     
@@ -65,6 +73,7 @@
 
 
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -73,38 +82,46 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     
-    //NSLog(@"%ld" ,[MoveLIst sharedHelp].allMoveMutable.count );
-    return [MoveLIst sharedHelp].allMove.count;
+    return [MoveLIst sharedHelp].fenImg.count;
     
    
    }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 125;
+   
+    MoveCellMode *item = [MoveLIst sharedHelp].fenImg[indexPath.row];
+
+    if (item.imgextra == nil) {
+        return 125;
+    }
+      return 175;
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   
-    
-    
-//    MoveViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    
-    MoveViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    MoveCellMode * item = [[MoveLIst sharedHelp] itemWithIndex:indexPath.row];
-    cell.model = item;
 
     
+    MoveCellMode *item = [MoveLIst sharedHelp].fenImg[indexPath.row];
+    if (item.imgextra==nil) {
+        MoveViewCell *cell= [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        cell.model = item;
+        return cell;
+    }else{
+        MoveFenViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"fen" forIndexPath:indexPath];
+        cell.model1= item;
+    
+        return cell;
+    
+    }
     
     
-    return cell;
+    
 }
 
 
@@ -151,5 +168,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

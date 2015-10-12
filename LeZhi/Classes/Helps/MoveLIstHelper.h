@@ -11,6 +11,8 @@
 @interface MoveLIst : NSObject
 @property (nonatomic,strong) NSArray *allMove;
 
+@property (nonatomic,strong) NSMutableArray *bigImg;
+@property (nonatomic,strong) NSMutableArray *fenImg;
 
 + (MoveLIst *)sharedHelp;
 //请求数据

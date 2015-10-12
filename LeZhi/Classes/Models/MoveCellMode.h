@@ -15,6 +15,8 @@
 
 @property (nonatomic , copy) NSString *url_3w;//详情页webView网址
 
-@property (nonatomic , copy) NSString *imgsrc;//cell图片
+@property (nonatomic , strong) NSString *imgsrc;//cell图片
+
+@property (nonatomic,strong) NSMutableArray *imgextra;//分栏图片
 
 @end

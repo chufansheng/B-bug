@@ -16,6 +16,8 @@
 		A428748F1BC502F40053F327 /* wo1.png in Resources */ = {isa = PBXBuildFile; fileRef = A42874891BC502F40053F327 /* wo1.png */; settings = {ASSET_TAGS = (); }; };
 		A42874901BC502F40053F327 /* xinwen.png in Resources */ = {isa = PBXBuildFile; fileRef = A428748A1BC502F40053F327 /* xinwen.png */; settings = {ASSET_TAGS = (); }; };
 		A42874911BC502F40053F327 /* xinwen1.png in Resources */ = {isa = PBXBuildFile; fileRef = A428748B1BC502F40053F327 /* xinwen1.png */; settings = {ASSET_TAGS = (); }; };
+		A45215501BC89C03000581CB /* MoveFenViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A452154E1BC89C03000581CB /* MoveFenViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		A45215511BC89C03000581CB /* MoveFenViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A452154F1BC89C03000581CB /* MoveFenViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		A4E078A61BC4CD7100BDE5D9 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E078A51BC4CD7100BDE5D9 /* HomeController.m */; settings = {ASSET_TAGS = (); }; };
 		C209E2761BC6680C003BD16C /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C209E2561BC6680C003BD16C /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
 		C209E2771BC6680C003BD16C /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = C209E2581BC6680C003BD16C /* NSData+ImageContentType.m */; settings = {ASSET_TAGS = (); }; };
@@ -98,6 +100,9 @@
 		A42874891BC502F40053F327 /* wo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wo1.png; sourceTree = "<group>"; };
 		A428748A1BC502F40053F327 /* xinwen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xinwen.png; sourceTree = "<group>"; };
 		A428748B1BC502F40053F327 /* xinwen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xinwen1.png; sourceTree = "<group>"; };
+		A452154D1BC89C03000581CB /* MoveFenViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveFenViewCell.h; sourceTree = "<group>"; };
+		A452154E1BC89C03000581CB /* MoveFenViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveFenViewCell.m; sourceTree = "<group>"; };
+		A452154F1BC89C03000581CB /* MoveFenViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoveFenViewCell.xib; sourceTree = "<group>"; };
 		A4E078A31BC4C9B300BDE5D9 /* URLPicture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLPicture.h; sourceTree = "<group>"; };
 		A4E078A41BC4CD7100BDE5D9 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		A4E078A51BC4CD7100BDE5D9 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
@@ -636,6 +641,9 @@
 				C29A54B81BC6A6AF007E9FFB /* MoveViewCell.h */,
 				C29A54B91BC6A6AF007E9FFB /* MoveViewCell.m */,
 				C29A54BA1BC6A6AF007E9FFB /* MoveViewCell.xib */,
+				A452154D1BC89C03000581CB /* MoveFenViewCell.h */,
+				A452154E1BC89C03000581CB /* MoveFenViewCell.m */,
+				A452154F1BC89C03000581CB /* MoveFenViewCell.xib */,
 			);
 			path = "影视View";
 			sourceTree = "<group>";
@@ -685,7 +693,6 @@
 				C28FC6651BC3E83900B5D9C2 /* Frameworks */,
 				C28FC6661BC3E83900B5D9C2 /* Resources */,
 				887F67DF52838CD84CF94136 /* Copy Pods Resources */,
-				A780A22842BDE0935C86C975 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -738,6 +745,7 @@
 				A428748E1BC502F40053F327 /* wo.png in Resources */,
 				A42874901BC502F40053F327 /* xinwen.png in Resources */,
 				C28FC67B1BC3E83900B5D9C2 /* LaunchScreen.storyboard in Resources */,
+				A45215511BC89C03000581CB /* MoveFenViewCell.xib in Resources */,
 				C28CC0161BC69D440024EE68 /* MJRefresh.bundle in Resources */,
 				C28FC6781BC3E83900B5D9C2 /* Assets.xcassets in Resources */,
 				A428748F1BC502F40053F327 /* wo1.png in Resources */,
@@ -781,21 +789,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A780A22842BDE0935C86C975 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -852,6 +845,7 @@
 				C209E2771BC6680C003BD16C /* NSData+ImageContentType.m in Sources */,
 				C209E2931BC6898F003BD16C /* MoveCellMode.m in Sources */,
 				C28CC00A1BC69D440024EE68 /* MJRefreshComponent.m in Sources */,
+				A45215501BC89C03000581CB /* MoveFenViewCell.m in Sources */,
 				C28CC0101BC69D440024EE68 /* MJRefreshBackGifFooter.m in Sources */,
 				C29A54BE1BC6A6AF007E9FFB /* MoveViewCell.m in Sources */,
 				C28CC0181BC69D440024EE68 /* UIScrollView+MJExtension.m in Sources */,
