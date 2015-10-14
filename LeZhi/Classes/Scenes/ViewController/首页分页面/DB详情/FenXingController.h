@@ -12,6 +12,6 @@
 @interface FenXingController : UIViewController
 @property (nonatomic,strong) MoveCellMode *modelWebFen;
 @property (nonatomic,strong) UIWebView *web4VeiwFen;
-
+@property (nonatomic,strong) NSString *url;
 
 @end

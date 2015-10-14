@@ -12,6 +12,7 @@
 #import "MJRefreshAutoFooter.h"//上拉加载
 #import "MJRefreshNormalHeader.h"//下拉刷新
 #import "DBGirlCell.h"
+#import "GirController.h"
 @interface GirlViewController ()
 
 @end
@@ -22,7 +23,7 @@
     [super viewDidLoad];
     //注册
     [self.tableView registerNib:[UINib nibWithNibName:@"DBGirlCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    [[DBGirlListHelper shanreGirlListHelper]requestWithGirlListCellofPage:0 Finsh:^{
+    [[DBGirlListHelper shanreGirlListHelper]requestWithGirlListCellofPage:_page Finsh:^{
         
     [self.tableView reloadData];
     }];
@@ -79,11 +80,21 @@
     DBGirlCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //[cell setSelectedBackgroundView:[[UIView alloc] init]] ;
-    DBGirlModel *item = [[DBGirlListHelper shanreGirlListHelper] itemWithIndex:indexPath.row];
+    DBGirlModel *item = [DBGirlListHelper shanreGirlListHelper].allGirimg[indexPath.row];
     cell.model = item;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GirController *girlVC = [[GirController alloc]init];
+    DBGirlModel * model = [DBGirlListHelper shanreGirlListHelper].allGirimg[indexPath.row];
+    girlVC.girlModel = model;
+    
+    
+    //[self presentViewController:girlVC animated:YES completion:nil];
+    [self.navigationController pushViewController:girlVC animated:YES];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

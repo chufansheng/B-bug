@@ -10,13 +10,13 @@
 
 @interface TouTiaoHelper : NSObject
 
-//+ (TouTiaoHelper *)shanreTouTiaoHelper;
++ (TouTiaoHelper *)shanreTouTiaoHelper;
 
-//- (void)requestWithTouTiaoListCellofPage:(NSUInteger)page Finsh:(void (^)(NSMutableArray *array))result;
+- (void)requestWithTouTiaoListCellofPage:(NSUInteger)page Finsh:(void(^)())result;
 
-- (void)requestWithHeaderImgUrl:(NSString *)url Finsh:(void (^)(NSMutableArray *array))result;
+@property (nonatomic , strong) NSArray *allTouTiaoListArr;
 
-- (void)requestWithListCellofUrl:(NSString *)url Finsh:(void (^)(NSMutableArray *array))result;
+@property (nonatomic , strong) NSArray *allTouTiaoHeaderArr;
 
 
 @end

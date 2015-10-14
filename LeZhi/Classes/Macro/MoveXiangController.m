@@ -22,7 +22,7 @@
    
     _web4Veiw = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 110)];
     NSURL *url = [NSURL URLWithString:_modelWeb.url_3w];
-    NSLog(@"%@",_modelWeb.url_3w);
+//    NSLog(@"%@",_modelWeb.url_3w);
     NSURLRequest *ui = [NSURLRequest requestWithURL:url];
     self.web4Veiw.scalesPageToFit = YES;
     self.web4Veiw.delegate = self;

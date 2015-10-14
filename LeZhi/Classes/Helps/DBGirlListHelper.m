@@ -37,13 +37,21 @@
             [self.allGirlMutabel removeAllObjects];
         }
       
-        for (NSDictionary *girlDic in  [result objectForKey:@"body"])
+        for (NSDictionary *girlDic in  result[@"body"])
         {
             DBGirlModel * model = [DBGirlModel new];
             [model setValuesForKeysWithDictionary:girlDic];
             [self.allGirlMutabel addObject:model];
             
         }
+//        for (NSDictionary *girlXiangDic in result[@"meta"]) {
+//            DBGirlModel * model = [DBGirlModel new];
+//            [model setValuesForKeysWithDictionary:girlXiangDic];
+//            [self.allGirlMutabel addObject:model];
+//        }        
+//        NSString *idStr = result[@"meta"][@"id"];
+//        [self.allGirlMutabel addObject:idStr];
+        
         results();
         
     } failure:^(NSURLSessionDataTask * task, NSError * error)
