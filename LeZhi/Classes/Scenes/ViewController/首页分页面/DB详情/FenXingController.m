@@ -9,7 +9,7 @@
 #import "FenXingController.h"
 #import "MoveCellMode.h"
 
-@interface FenXingController ()
+@interface FenXingController ()<UIWebViewDelegate>
 
 @end
 
@@ -18,17 +18,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _web4VeiwFen = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    NSURL *url = [NSURL URLWithString:_modelWebFen.url_3w];
+    NSURL *url = [NSURL URLWithString:self.url];
+    NSLog(@"%@",self.url);
     NSURLRequest *ui = [NSURLRequest requestWithURL:url];
     self.web4VeiwFen.scalesPageToFit = YES;
-    
+    self.web4VeiwFen.delegate = self;
     [self.web4VeiwFen  loadRequest:ui];
     [self.view addSubview:self.web4VeiwFen];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('nav cf')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('sidebar')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('hotset-sets-list-wrap')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('hotset-tab-last hotset-tab-ad')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('hotset-tab cf')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('hotset-cont')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"ddocument.getElementsByClassName('other-content')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('tie-area')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('gallery-gray-area')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('gallery-guess-wrapper')[0].style.display = 'none'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('top cf')[0].style.display = 'none'"];
+    
+     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('top-line')[0].style.display = 'none'"];
+    
+   
+}
+
+- (void)didReceiveMemoryWarning {    [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 

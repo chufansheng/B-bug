@@ -17,7 +17,6 @@
 #import "GirlViewController.h"
 
 
-
 @interface HeadlineController ()
 
 @end
@@ -41,12 +40,12 @@
     MovieTableViewController *movieVC = [[MovieTableViewController alloc]init];
     movieVC.title = @"影视";
     
-    GirlViewController *girlVC = [[GirlViewController alloc]init];
-    girlVC.title = @"美女";
+    GirlViewController *duanziVC = [[GirlViewController alloc]init];
+    duanziVC.title = @"美女";
     
     
     SCNavTabBarController *navTabControll = [[SCNavTabBarController alloc]init];
-    navTabControll.subViewControllers = @[toutiaoVC,yuleVC,sportVC,movieVC,girlVC];
+    navTabControll.subViewControllers = @[toutiaoVC,yuleVC,sportVC,movieVC,duanziVC];
     navTabControll.showArrowButton = NO;
     [navTabControll addParentController:self];
     

@@ -7,13 +7,9 @@
 //
 
 #import "MovieController.h"
+#import "DHMovieTableViewController.h"
 
-#import "DHMovieTableViewCell.h"
-#import "DHMovieHelper.h"
-
-@interface MovieController ()<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic , strong) UITableView *tableView;
+@interface MovieController ()
 
 @end
 
@@ -21,24 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    self.title = @"视频";
     
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+    DHMovieTableViewController * DHMovieTable = [[DHMovieTableViewController alloc]init];
     
-    
-    [self.tableView registerClass:[DHMovieTableViewCell class] forCellReuseIdentifier:@"cell"];
-    
-    [[DHMovieHelper sharedHelp]requestWithFinsh:^{
-        NSLog(@"请求数据完成");
-        [self.tableView reloadData];
-    }];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:self.tableView];
-    
+    [self.navigationController addChildViewController:DHMovieTable];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,43 +33,24 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [DHMovieHelper sharedHelp].allMovie.count;
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DHMovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    DHMovieModel * item = [[DHMovieHelper sharedHelp] itemWithIndex:indexPath.row];
-    cell.MovieModel = item;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
+    // Configure the cell...
     
     return cell;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DHMovieModel * item = [[DHMovieHelper sharedHelp] itemWithIndex:indexPath.row];
-    return [self textHeight:item.title]+50 ;
-    
-    
-}
-//自适应高度
-- (CGFloat)textHeight:(NSString *)str{
-    
-    
-    NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
-    
-    
-    CGRect rect = [str boundingRectWithSize:CGSizeMake(200, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
-    
-    return rect.size.height;
-    
-}
-
+*/
 
 /*
 // Override to support conditional editing of the table view.

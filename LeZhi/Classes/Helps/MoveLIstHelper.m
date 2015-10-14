@@ -18,6 +18,7 @@
 
 
 @implementation MoveLIst
+
 + (MoveLIst *)sharedHelp{
     static MoveLIst *helper = nil;
     static dispatch_once_t onceToken;
@@ -54,12 +55,11 @@
 
 
 - (void)requestWithMoveListCellofPage:(NSUInteger)page Finsh:(void(^)())results{
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
     [manager GET:kYingshiUrl(page) parameters:nil success:^(NSURLSessionDataTask *tadk, id result){
         //NSLog(@"%@",result);
-        
         if (page == 0) {
             [self.allMoveMutable removeAllObjects];
             [self.fenImg removeAllObjects];
@@ -70,15 +70,8 @@
         //self.bigImg = [NSMutableArray array];
         NSMutableDictionary *bigDic = minImg[0];
         [self.bigImg addObject:bigDic[@"imgsrc"]];
+        [self.touImg addObject:bigDic[@"url"]];
         
-     
-//        NSMutableDictionary *fenImg1 = minImg[4];
-//        NSMutableArray *fenImg = [fenImg1 objectForKey:@"imgextra"];
-//        for (NSDictionary *fen in fenImg) {
-//            MoveCellMode *movef = [[MoveCellMode alloc]init];
-//           [movef setValuesForKeysWithDictionary:fen];
-//            [self.fenImg addObject:movef];
-//        }
         for (NSDictionary* dic in result[@"T1348648650048"]) {
             MoveCellMode * model = [MoveCellMode new];
             [model setValuesForKeysWithDictionary:dic];
@@ -86,26 +79,12 @@
         }
 
         [self.fenImg removeObjectAtIndex:0];
-
-//        for(NSDictionary *dic in minImg)
-//        {
-//        MoveCellMode *move = [MoveCellMode new];
-//        [move setValuesForKeysWithDictionary:dic];
-//        [self.allMoveMutable addObject:move];
-//        }
-//
-//        [self.allMoveMutable removeObjectAtIndex:0];
-//        //NSLog(@"%@",_allMoveMutable);
-        results();
+        results(self.allMoveMutable);
     }failure:^(NSURLSessionDataTask *task, NSError *error){
-        NSLog(@"失败");
+       // NSLog(@"失败");
     }];
 
 }
-
-
-
-
 
 
 //根据一个index 返回一个model
@@ -142,5 +121,12 @@
         
     }
     return _fenImg;
+}
+
+- (NSMutableArray *)touImg{
+    if (!_touImg) {
+        _touImg = [NSMutableArray array];
+    }
+    return _touImg;
 }
 @end

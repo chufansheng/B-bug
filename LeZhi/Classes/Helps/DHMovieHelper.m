@@ -81,7 +81,7 @@
     [manager GET:DHMovieURL parameters:nil success:^void(NSURLSessionDataTask * task, id results) {
 //        [weakself.dataArray addObjectsFromArray:result[@"results"]];
         
-       // NSLog(@"=======%@" , results);
+        NSLog(@"=======%@" , results);
         
         for (NSDictionary *dic in results[@"videoList"]) {
             
