@@ -21,7 +21,7 @@
     [self.tableView registerClass:[DHMovieTableViewCell class] forCellReuseIdentifier:@"cell"];
     
     [[DHMovieHelper sharedHelp]requestWithFinsh:^{
-        NSLog(@"请求数据完成");
+       // NSLog(@"请求数据完成");
         [self.tableView reloadData];
     }];
     
