@@ -15,6 +15,7 @@
 #import "MJRefreshNormalHeader.h"//下拉刷新
 #import "UIImageView+WebCache.h"
 #import "MoveFenViewCell.h"
+#import "MoveXiangController.h"
 
 @interface MovieTableViewController ()
 
@@ -120,9 +121,30 @@
     
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MoveCellMode *item = [MoveLIst sharedHelp].fenImg[indexPath.row];
+    if(item.imgextra == nil){
+        MoveXiangController *MoveXiang = [[MoveXiangController alloc]init];
+        MoveCellMode *item1 = [MoveLIst sharedHelp].fenImg[indexPath.row];
+        
+        MoveXiang.modelWeb = item1;
+        [self.navigationController showViewController:MoveXiang sender:nil];
+        
+        
+        
+    }else{
+        
+        //        FenXingController *moveXiangFen = [[FenXingController alloc]init];
+        //        DBMoveModel *item2 = [[DBMoveListHelper shanreMoveListHelper] itemWithIndex:indexPath.row];
+        //        moveXiangFen.modelWebFen = item2;
+        //        [self.navigationController pushViewController:moveXiangFen animated:YES];
+    }
     
     
 }
+
 
 
 /*

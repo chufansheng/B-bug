@@ -12,7 +12,7 @@
 
 @property (nonatomic , copy) NSString *commentsall;//评论数
 
-@property (nonatomic , copy) NSURL *commentsUrl;//详情webView
+@property (nonatomic , copy) NSString *commentsUrl;//详情webView
 
 @property (nonatomic , copy) NSString *online;
 

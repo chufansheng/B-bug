@@ -14,7 +14,7 @@
 #import "YuLeTableViewController.h"
 #import "SportTableViewController.h"
 #import "MovieTableViewController.h"
-#import "DuanZiTableViewController.h"
+#import "GirlViewController.h"
 
 
 
@@ -41,12 +41,12 @@
     MovieTableViewController *movieVC = [[MovieTableViewController alloc]init];
     movieVC.title = @"影视";
     
-    DuanZiTableViewController *duanziVC = [[DuanZiTableViewController alloc]init];
-    duanziVC.title = @"段子";
+    GirlViewController *girlVC = [[GirlViewController alloc]init];
+    girlVC.title = @"美女";
     
     
     SCNavTabBarController *navTabControll = [[SCNavTabBarController alloc]init];
-    navTabControll.subViewControllers = @[toutiaoVC,yuleVC,sportVC,movieVC,duanziVC];
+    navTabControll.subViewControllers = @[toutiaoVC,yuleVC,sportVC,movieVC,girlVC];
     navTabControll.showArrowButton = NO;
     [navTabControll addParentController:self];
     

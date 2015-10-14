@@ -1,27 +1,57 @@
 //
-//  TuPianTableViewController.m
+//  GirlViewController.m
 //  LeZhi
 //
-//  Created by lanou3g on 15/10/7.
+//  Created by S༻D༻B༻ on 15/10/13.
 //  Copyright © 2015年 褚凡生. All rights reserved.
 //
 
-#import "TuPianTableViewController.h"
-
-@interface TuPianTableViewController ()
+#import "GirlViewController.h"
+#import "DBGirlListHelper.h"
+#import "MJRefresh.h"
+#import "MJRefreshAutoFooter.h"//上拉加载
+#import "MJRefreshNormalHeader.h"//下拉刷新
+#import "DBGirlCell.h"
+@interface GirlViewController ()
 
 @end
 
-@implementation TuPianTableViewController
+@implementation GirlViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //注册
+    [self.tableView registerNib:[UINib nibWithNibName:@"DBGirlCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [[DBGirlListHelper shanreGirlListHelper]requestWithGirlListCellofPage:0 Finsh:^{
+        
+    [self.tableView reloadData];
+    }];
+    //上拉加载
+    [self.tableView.footer beginRefreshing];
+    self.tableView.footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    //下拉刷新
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData1)];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.tableView.header beginRefreshing];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+#pragma mark --刷新加载--
+- (void)loadNewData
+{
+    _page += 1;
+    [[DBGirlListHelper shanreGirlListHelper]requestWithGirlListCellofPage:0 Finsh:^{
+        
+        [self.tableView reloadData];
+    }];
+
+    
+}
+- (void)loadNewData1{
+    _page = 0;
+    [[DBGirlListHelper shanreGirlListHelper]requestWithGirlListCellofPage:0 Finsh:^{
+        [self.tableView reloadData];
+        [self.tableView.header endRefreshing];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +62,28 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [DBGirlListHelper shanreGirlListHelper].allGirimg.count;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 510;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    // Configure the cell...
-    
+    DBGirlCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //[cell setSelectedBackgroundView:[[UIView alloc] init]] ;
+    DBGirlModel *item = [[DBGirlListHelper shanreGirlListHelper] itemWithIndex:indexPath.row];
+    cell.model = item;
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
