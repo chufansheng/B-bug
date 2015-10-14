@@ -8,7 +8,36 @@
 
 #import "SportTableViewController.h"
 
-@interface SportTableViewController ()
+#import "URLPicture.h"
+
+//刷新加载
+#import "MJRefresh.h"
+#import "MJRefreshAutoFooter.h"
+#import "MJRefreshNormalHeader.h"
+//轮播第三方
+#import "SDCycleScrollView.h"
+//进度提示框
+#import "MBProgressHUD.h"
+
+#import "OneImageCellModel.h"
+
+#import "TouTiaoHelper.h"
+
+#import "TouTiaoTableViewCell.h"
+#import "TouTiaoThreeViewCell.h"
+//详情页
+#import "FSTouTiaoDetailViewController.h"
+#import "FSHeaderScrollViewController.h"
+
+@interface SportTableViewController ()<SDCycleScrollViewDelegate>
+
+@property (nonatomic , strong) NSMutableArray *locklListArr;
+
+@property (nonatomic , strong) NSMutableArray *headerImgArr;
+
+@property (nonatomic , assign) NSUInteger pageSize;
+
+@property (nonatomic , strong) MBProgressHUD *HUD;
 
 @end
 
@@ -16,12 +45,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    [[TouTiaoHelper new]requestWithHeaderImgUrl:kSportUrl(_pageSize) Finsh:^(NSMutableArray *array) {
+        
+        self.headerImgArr = array;
+        [self addScrollImg];
+        [self.tableView.header beginRefreshing];
+        [self.HUD hide:YES];
+        [self.tableView.header endRefreshing];
+    }];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //tableViewCell分割线隐藏
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[TouTiaoHelper new]requestWithListCellofUrl:kSportUrl(_pageSize) Finsh:^(NSMutableArray *array) {
+        self.locklListArr = array;
+        [self.tableView.header beginRefreshing];
+        [self.tableView reloadData];
+    }];
+    
+    //tableViewCell分割线隐藏
+   // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //加载进度提示框
+    [self loadHud];
+    
+#pragma mark -- 注册cell
+    //注册单图cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"TouTiaoTableViewCell" bundle:nil] forCellReuseIdentifier:@"TouTiaoCell"];
+    
+    //注册多图cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"TouTiaoThreeViewCell" bundle:nil] forCellReuseIdentifier:@"ThreeCell"];
+    
+    
+    //下拉刷新
+    [self.tableView.header beginRefreshing];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshListCell)];
+    
+    self.tableView.footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadListCell)];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,25 +95,155 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return self.locklListArr.count;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OneImageCellModel *model = self.locklListArr[indexPath.row];
+    if ([model.type isEqualToString:@"slide"]) {
+        
+        return 150;
+    } else {
+        return 90;
+    }
+    
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    OneImageCellModel *model = self.locklListArr[indexPath.row];
     
-    return cell;
+    if ([model.type isEqualToString:@"slide"]) {
+        
+        TouTiaoThreeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreeCell" forIndexPath:indexPath];
+        cell.model = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }else{
+        
+        TouTiaoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TouTiaoCell" forIndexPath:indexPath];
+        cell.oneImeCellModel = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
 }
-*/
 
+#pragma mark -- cell点击方法 --
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OneImageCellModel *webModel = self.locklListArr[indexPath.row];
+    
+    FSTouTiaoDetailViewController *toutiaoDetail = [[FSTouTiaoDetailViewController alloc]init];
+    
+    toutiaoDetail.webUrl = webModel.commentsUrl;
+    
+    [self.navigationController pushViewController:toutiaoDetail animated:YES];
+    
+}
+
+
+
+#pragma mark ------ 刷新加载 --------
+
+//下拉
+- (void)refreshListCell{
+    
+    _pageSize = 1;
+    
+    [[TouTiaoHelper new]requestWithListCellofUrl:kSportUrl(_pageSize) Finsh:^(NSMutableArray *array) {
+        
+        self.locklListArr = array;
+        [self.tableView reloadData];
+        [self.tableView.header endRefreshing];
+    }];
+    
+}
+//上拉
+- (void)loadListCell{
+    
+    _pageSize += 1;
+    
+    [[TouTiaoHelper new]requestWithListCellofUrl:kSportUrl(_pageSize) Finsh:^(NSMutableArray *array) {
+        [self.locklListArr addObjectsFromArray:array];
+        [self.tableView reloadData];
+        [self.tableView.footer endRefreshing];
+        
+    }];
+    
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    FSHeaderScrollViewController *headerScrollDetilView = [[FSHeaderScrollViewController alloc]init];
+    
+    NSString *string = [self.headerImgArr[index] commentsUrl];
+    
+    headerScrollDetilView.url = string;
+    
+    [self.navigationController pushViewController:headerScrollDetilView animated:NO];
+    
+}
+
+
+
+#pragma mark --- 加载轮播图 ---
+- (void)addScrollImg{
+    
+    NSMutableArray *array1 = [[NSMutableArray alloc]initWithCapacity:6];
+    NSMutableArray *titleArr = [[NSMutableArray alloc]initWithCapacity:2];
+    for (int i = 0; i < self.headerImgArr.count; i ++) {
+        OneImageCellModel *scrollModel = [OneImageCellModel new];
+        scrollModel = self.headerImgArr[i];
+        NSString *str = scrollModel.thumbnail;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",str]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        UIImage *img = [UIImage imageWithData:data];
+        [array1 addObject:img];
+        [titleArr addObject:[scrollModel title]];
+    }
+    //    NSLog(@"%@",array1);
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200) imagesGroup:array1];
+    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    cycleScrollView.titlesGroup = titleArr;
+    cycleScrollView.autoScrollTimeInterval = 100000;
+    cycleScrollView.delegate = self;
+    [self.view addSubview:cycleScrollView];
+    self.tableView.tableHeaderView = cycleScrollView;
+    
+}
+
+#pragma mark --- 加载进度提示框 ----
+- (void)loadHud{
+    
+    self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
+    
+    
+    
+    self.HUD.dimBackground = YES;
+    
+    self.HUD.labelText = @"正在加载...";
+    
+    [self.view addSubview:self.HUD];
+    
+    [self.HUD showAnimated:YES whileExecutingBlock:^{
+        sleep(1000);
+    } completionBlock:^{
+        [self.HUD removeFromSuperview];
+        self.HUD = nil;
+    }];
+    
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

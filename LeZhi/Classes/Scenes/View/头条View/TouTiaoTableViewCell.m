@@ -13,7 +13,8 @@
 @implementation TouTiaoTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    // Initialization code   
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -24,11 +25,11 @@
 
 - (void)setOneImeCellModel:(OneImageCellModel *)oneImeCellModel{
     
-    [_img4OneImgCell sd_setImageWithURL:[NSURL URLWithString:oneImeCellModel.thumbnail]];
+    [_img4OneImgCell sd_setImageWithURL:[NSURL URLWithString:oneImeCellModel.thumbnail]placeholderImage:[UIImage imageNamed:@"zhanwei.png"]];
     
     _title4OneImgCell.text = oneImeCellModel.title;
     
-    _time4OneImgCell.text = oneImeCellModel.updateTime;
+    _time4OneImgCell.text = [oneImeCellModel.updateTime substringWithRange:NSMakeRange(11, 5)];
     
     _pinlun4OneImgCell.text = oneImeCellModel.commentsall;
     

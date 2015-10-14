@@ -24,8 +24,8 @@
 - (void)setModel:(DBGirlModel *)model{
     [self.imgGirl sd_setImageWithURL:[NSURL URLWithString: model.thumbnail]];
     
-    self.labZan.text = [NSString stringWithFormat:@"%ld",model.likes];
-    self.labPing.text = [NSString stringWithFormat:@"%ld",model.comments];
+    self.labZan.text = [NSString stringWithFormat:@"%ld",(long)model.likes];
+    self.labPing.text = [NSString stringWithFormat:@"%ld",(long)model.comments];
     
 }
 @end

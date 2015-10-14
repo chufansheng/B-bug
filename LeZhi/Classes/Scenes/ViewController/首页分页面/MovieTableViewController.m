@@ -6,9 +6,6 @@
 //  Copyright © 2015年 褚凡生. All rights reserved.
 //
 
-
-#define movieUrl(url) [NSString stringWithFormat:@"http://ent.163.com/photoview/00B70003/%@.html#p=B5Q8G0B600B70003",url];
-
 #import "MovieTableViewController.h"
 #import "MoveLIstHelper.h"
 #import "MoveCellMode.h"
@@ -19,13 +16,8 @@
 #import "UIImageView+WebCache.h"
 #import "MoveFenViewCell.h"
 #import "MoveXiangController.h"
-#import "FenXingController.h"
-#import "HeaderController.h"
-#import "DBGirlModel.h"
-#import "MoveLIstHelper.h"
 
-
-@interface MovieTableViewController ()<UIGestureRecognizerDelegate>
+@interface MovieTableViewController ()
 
 @property (nonatomic,strong) UIImageView *bigImg1;
 @property (nonatomic,strong) MoveCellMode *bigImgModel;
@@ -40,7 +32,6 @@
     //注册
     self.title = @"影视";
     [self.tableView registerNib:[UINib nibWithNibName:@"MoveViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
- 
     
    //注册分栏
     [self.tableView registerNib:[UINib nibWithNibName:@"MoveFenViewCell" bundle:nil] forCellReuseIdentifier:@"fen"];
@@ -51,18 +42,7 @@
         
     [self.bigImg1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[MoveLIst sharedHelp].bigImg[0]]]];
     self.tableView.tableHeaderView = self.bigImg1;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-    
-        tap.numberOfTapsRequired = 1;
-        tap.numberOfTouchesRequired = 1;
-        tap.delegate = self;
-        [self.bigImg1 addGestureRecognizer:tap];
-        self.bigImg1.userInteractionEnabled = YES;
-//        UIButton *but = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.bigImg1.frame.size.width, self.bigImg1.frame.size.height)];
-//        [self.bigImg1 addSubview:but];
-//        [but addTarget:self action:@selector(tap) forControlEvents:YES];
-//        
-        
+
         [self.tableView reloadData];
     }];
     
@@ -76,13 +56,6 @@
     
 }
 
-- (void)tap{
-
-    HeaderController *header = [[HeaderController alloc]init];
-    header.url = [MoveLIst sharedHelp].touImg[0];
-    [self.navigationController showViewController:header sender:nil];
-
-}
 - (void)loadNewData{
     _page += 20;
     [[MoveLIst sharedHelp]requestWithMoveListCellofPage:_page Finsh:^{
@@ -136,25 +109,19 @@
 
     
     MoveCellMode *item = [MoveLIst sharedHelp].fenImg[indexPath.row];
-    if (item.imgextra == nil) {
+    if (item.imgextra==nil) {
         MoveViewCell *cell= [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.model = item;
-        
         return cell;
     }else{
         MoveFenViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"fen" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
         cell.model1= item;
     
         return cell;
     
     }
-
-    
     
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MoveCellMode *item = [MoveLIst sharedHelp].fenImg[indexPath.row];
@@ -163,29 +130,20 @@
         MoveCellMode *item1 = [MoveLIst sharedHelp].fenImg[indexPath.row];
         
         MoveXiang.modelWeb = item1;
-       [self.navigationController showViewController:MoveXiang sender:nil];
-    
-   
-    
+        [self.navigationController showViewController:MoveXiang sender:nil];
+        
+        
+        
     }else{
         
-        FenXingController *moveXiangFen = [[FenXingController alloc]init];
-        MoveCellMode *item2 = [MoveLIst sharedHelp].fenImg[indexPath.row];
-//        NSLog(@"%@",item2.title);
-//        NSLog(@"++++++++++++++++++++%@",item2);
-        NSString *str = item2.photosetID;
-//        NSLog(@"%@",item2.photosetID);
-//        NSLog(@"%@",[str substringWithRange:NSMakeRange(9, 6)]);
-        NSString *str1 = [str substringWithRange:NSMakeRange(9, 6)];
-        NSString *str3 = movieUrl(str1);
-        moveXiangFen.url = str3;
-        [self.navigationController pushViewController:moveXiangFen animated:YES];
+        //        FenXingController *moveXiangFen = [[FenXingController alloc]init];
+        //        DBMoveModel *item2 = [[DBMoveListHelper shanreMoveListHelper] itemWithIndex:indexPath.row];
+        //        moveXiangFen.modelWebFen = item2;
+        //        [self.navigationController pushViewController:moveXiangFen animated:YES];
     }
     
     
 }
-
-
 
 
 

@@ -13,7 +13,6 @@
 @implementation MoveFenViewCell
 
 - (void)awakeFromNib {
-
     // Initialization code
 }
 

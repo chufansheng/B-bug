@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,71 +13,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="378" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="abO-R8-RX9">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abO-R8-RX9">
                         <rect key="frame" x="22" y="12" width="122" height="95"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="Vg3-bR-eon"/>
-                            <constraint firstAttribute="width" constant="122" id="XIa-3q-Eg5"/>
-                            <constraint firstAttribute="height" constant="95" id="ldX-0U-32S"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Vg3-bR-eon"/>
-                            </mask>
-                        </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ob0-Gb-zbR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ob0-Gb-zbR">
                         <rect key="frame" x="166" y="8" width="185" height="42"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="185" id="QrH-5Y-ibs"/>
-                            <constraint firstAttribute="height" constant="42" id="RjY-8t-bgp"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45M-ZL-2uB">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45M-ZL-2uB">
                         <rect key="frame" x="166" y="58" width="185" height="38"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="185" id="0GN-Tf-sme"/>
-                            <constraint firstAttribute="height" constant="38" id="mlU-Rc-TQA"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <animations/>
-                <constraints>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="BCE-R1-hq3"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Di0-5o-CcM"/>
-                    <constraint firstItem="45M-ZL-2uB" firstAttribute="leading" secondItem="abO-R8-RX9" secondAttribute="trailing" constant="22" id="Iir-8p-7ST"/>
-                    <constraint firstItem="45M-ZL-2uB" firstAttribute="leading" secondItem="abO-R8-RX9" secondAttribute="trailing" constant="22" id="KhF-LC-vpM"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="LVH-m5-rc0"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="LgX-4S-sYc"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="PFo-rX-qUb"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="PyY-PX-fVf"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UBf-Be-PxG"/>
-                    <constraint firstItem="ob0-Gb-zbR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="V6d-UX-muT"/>
-                    <constraint firstAttribute="bottom" secondItem="45M-ZL-2uB" secondAttribute="bottom" constant="23" id="YD2-2g-1db"/>
-                    <constraint firstItem="45M-ZL-2uB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="166" id="c7K-wK-bkI"/>
-                    <constraint firstAttribute="trailing" secondItem="ob0-Gb-zbR" secondAttribute="trailing" constant="27" id="cxe-h3-YX0"/>
-                    <constraint firstItem="abO-R8-RX9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="mbB-Ij-AGs"/>
-                    <constraint firstAttribute="trailing" secondItem="45M-ZL-2uB" secondAttribute="trailing" constant="27" id="uKu-BY-YYQ"/>
-                    <constraint firstItem="ob0-Gb-zbR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="166" id="zXh-Ik-qVp"/>
-                </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="BCE-R1-hq3"/>
-                        <exclude reference="LVH-m5-rc0"/>
-                        <exclude reference="LgX-4S-sYc"/>
-                        <exclude reference="Iir-8p-7ST"/>
-                        <exclude reference="c7K-wK-bkI"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>

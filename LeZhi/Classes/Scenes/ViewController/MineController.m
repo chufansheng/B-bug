@@ -8,7 +8,15 @@
 
 #import "MineController.h"
 
-@interface MineController ()
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+@interface MineController ()<UITableViewDelegate , UITableViewDataSource>
+
+@property (nonatomic , strong) UITableView *mainTableView;
+
+@property (nonatomic , strong) NSArray *dataArray;
 
 @end
 
@@ -18,7 +26,45 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor cyanColor];
     // Do any additional setup after loading the view.
+    
+    self.mainTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    
+    self.mainTableView.frame = CGRectMake(0, 0, kScreenWidth , kScreenHeight - 55);
+    
+    self.mainTableView.backgroundColor = [UIColor whiteColor];
+    
+    self.mainTableView.delegate = self;
+    
+    self.mainTableView.dataSource = self;
+    
+    [self.view addSubview:self.mainTableView];
+    
+    [self.mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    self.dataArray = @[@[@"我的收藏"],@[@"当前版本"]];
+    
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return self.dataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return [self.dataArray[section]count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.section][indexPath.row];
+    
+    return cell;
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

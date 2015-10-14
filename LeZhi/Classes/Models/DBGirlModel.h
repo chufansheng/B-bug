@@ -12,7 +12,5 @@
 @property (nonatomic,assign) NSInteger likes;//赞数
 @property (nonatomic,assign) NSInteger comments;//评论
 @property (nonatomic,strong) NSString *thumbnail;//图
-@property (nonatomic,strong) NSString *ID; //id
-
-
+@property (nonatomic,strong) NSString *ID;//id
 @end

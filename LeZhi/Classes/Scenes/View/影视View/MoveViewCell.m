@@ -9,11 +9,10 @@
 #import "MoveViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "MoveCellMode.h"
-
 @implementation MoveViewCell
 
 - (void)awakeFromNib {
-       // Initialization code
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

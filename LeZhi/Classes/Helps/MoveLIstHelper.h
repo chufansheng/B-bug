@@ -13,7 +13,6 @@
 
 @property (nonatomic,strong) NSMutableArray *bigImg;
 @property (nonatomic,strong) NSMutableArray *fenImg;
-@property (nonatomic,strong) NSMutableArray *touImg;
 
 + (MoveLIst *)sharedHelp;
 //请求数据
